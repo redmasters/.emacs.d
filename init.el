@@ -47,6 +47,8 @@
     (ac-config-default)
     (global-auto-complete-mode t)))
 
+
+
 ;;Checagem de Sintaxe
 
 (use-package flycheck
@@ -93,7 +95,24 @@
 	'(("css" . (ac-source-css-property))
 	  ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
 
-(setq web-mode-enable-auto-closing t))
+  (setq web-mode-enable-auto-closing t))
+
+(defun my-web-mode-hook ()
+  "Hooks for Web mode."
+  (setq web-mode-markup-indent-offset 2)
+)
+(add-hook 'web-mode-hook  'my-web-mode-hook)
+(setq web-mode-markup-indent-offset 2)
+(setq web-mode-css-indent-offset 2)
+(setq web-mode-code-indent-offset 2)
+;;Efeitos do web-mode
+(setq web-mode-folded-face 1)
+
+(use-package impatient-mode
+  :ensure t
+  :config
+  )
+
 
 ;; Tema
 
@@ -119,7 +138,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (web-mode flycheck-irony flycheck rebecca-theme molokai-theme ace-window neotree which-key try use-package))))
+    (impatient-mode web-mode flycheck-irony flycheck rebecca-theme molokai-theme ace-window neotree which-key try use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
