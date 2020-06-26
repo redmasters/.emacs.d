@@ -17,9 +17,9 @@
 (require 'package)
 (setq package-enable-at-startup nil);Desabilitar inicializacao de pacotes
 
-					; MELPA - repositorio
+                    ; MELPA - repositorio
 (add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/"))
+         '("melpa" . "https://melpa.org/packages/"))
 
 
 
@@ -48,8 +48,41 @@
     (global-auto-complete-mode t)))
 
 
+;;Company - Autocomplete
+(use-package company
+  :hook (prog-mode . company-mode)
+  :config
+  (setq company-minimum-prefix-length 1)
+  (setq company-idle-delay 0)
+  (setq company-selection-wrap-around t)
+  (setq company-tooltip-align-annotations t)
+  (setq company-frontends '(company-pseudo-tooltip-frontend ; show tooltip even for single candidate
+                            company-echo-metadata-frontend))
+  (with-eval-after-load 'company
+    (define-key company-active-map (kbd "C-j") nil) ; avoid conflict with emmet-mode
+    (define-key company-active-map (kbd "C-n") #'company-select-next)
+    (define-key company-active-map (kbd "C-p") #'company-select-previous)))
+
+(use-package company-posframe
+  :config
+  (setq company-posframe-show-metadata nil)
+  (setq company-posframe-show-indicator nil)
+  (setq company-posframe-quickhelp-delay nil)
+  (company-posframe-mode +1))
 
 
+;;centaur TABS
+(use-package centaur-tabs
+  :ensure t
+  :config
+  (setq centaur-tabs-set-bar 'over
+	centaur-tabs-set-icons t
+	centaur-tabs-height 24
+	centaur-tabs-gray-out-icons 'buffer
+	centaur-tabs-set-modified-marker t
+	centaur-tabs-modified-marker "*") 
+	centaur-tabs-style "box"
+  (centaur-tabs-mode t))
 
 ;;Checagem de Sintaxe
 
@@ -94,26 +127,21 @@
     (yas-global-mode 1)))
 
 ;;html-packs
+(use-package markdown-mode
+  :hook (markdown-mode . visual-line-mode))
+
 (use-package web-mode
-  :ensure t
+  :mode (("\\.html?\\'" . web-mode)
+         ("\\.css\\'"   . web-mode)
+         ("\\.jsx?\\'"  . web-mode)
+         ("\\.tsx?\\'"  . web-mode)
+         ("\\.json\\'"  . web-mode))
   :config
-  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-  (setq web-mode-engines-alist
-	'(("django" . "\\.html\\'")))
-  (setq web-mode-ac-sources-alist
-	'(("css" . (ac-source-css-property))
-	  ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
+  (setq web-mode-markup-indent-offset 2) ; HTML
+  (setq web-mode-css-indent-offset 2)    ; CSS
+  (setq web-mode-code-indent-offset 2)   ; JS/JSX/TS/TSX
+  (setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'"))))
 
-  (setq web-mode-enable-auto-closing t))
-
-(defun my-web-mode-hook ()
-  "Hooks for Web mode."
-  (setq web-mode-markup-indent-offset 2)
-)
-(add-hook 'web-mode-hook  'my-web-mode-hook)
-(setq web-mode-markup-indent-offset 2)
-(setq web-mode-css-indent-offset 2)
-(setq web-mode-code-indent-offset 2)
 ;;Efeitos do web-mode
 (setq web-mode-folded-face 1)
 
@@ -132,10 +160,10 @@
 
 ;; Tema
 
-(use-package monokai-theme
+(use-package doom-themes
   :ensure t
-  :config (load-theme 'monokai t))
-  
+  :config (load-theme 'doom-wilmersdorf t))
+
 
 ;;Atalhos
 (global-set-key (kbd "C-<tab>") 'other-window)
@@ -152,16 +180,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("1623aa627fecd5877246f48199b8e2856647c99c6acdab506173f9bb8b0a41ac" default)))
  '(package-selected-packages
    (quote
-    (org-mode magit yasnippet impatient-mode web-mode flycheck-irony flycheck rebecca-theme molokai-theme ace-window neotree which-key try use-package))))
+    (company-posframe centaur-tabs doom-themes better-defaults Better-Defaults evil org-mode magit yasnippet impatient-mode web-mode flycheck-irony flycheck rebecca-theme molokai-theme ace-window neotree which-key try use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
-
-
-
