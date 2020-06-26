@@ -70,6 +70,11 @@
   (setq company-posframe-quickhelp-delay nil)
   (company-posframe-mode +1))
 
+(use-package flex-autopair
+  :ensure t)
+(flex-autopair-mode 1)
+
+
 
 ;;centaur TABS
 (use-package centaur-tabs
@@ -80,7 +85,7 @@
 	centaur-tabs-height 24
 	centaur-tabs-gray-out-icons 'buffer
 	centaur-tabs-set-modified-marker t
-	centaur-tabs-modified-marker "*") 
+	centaur-tabs-modified-marker "*")
 	centaur-tabs-style "box"
   (centaur-tabs-mode t))
 
@@ -160,9 +165,9 @@
 
 ;; Tema
 
-(use-package doom-themes
+(use-package monokai-theme
   :ensure t
-  :config (load-theme 'doom-wilmersdorf t))
+  :config (load-theme 'monokai t))
 
 
 ;;Atalhos
@@ -185,7 +190,7 @@
     ("1623aa627fecd5877246f48199b8e2856647c99c6acdab506173f9bb8b0a41ac" default)))
  '(package-selected-packages
    (quote
-    (company-posframe centaur-tabs doom-themes better-defaults Better-Defaults evil org-mode magit yasnippet impatient-mode web-mode flycheck-irony flycheck rebecca-theme molokai-theme ace-window neotree which-key try use-package))))
+    (monokai-themes company-posframe centaur-tabs doom-themes better-defaults Better-Defaults evil org-mode magit yasnippet impatient-mode web-mode flycheck-irony flycheck rebecca-theme molokai-theme ace-window neotree which-key try use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
