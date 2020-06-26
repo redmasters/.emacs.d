@@ -49,6 +49,8 @@
 
 
 
+
+
 ;;Checagem de Sintaxe
 
 (use-package flycheck
@@ -152,7 +154,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (magit yasnippet impatient-mode web-mode flycheck-irony flycheck rebecca-theme molokai-theme ace-window neotree which-key try use-package))))
+    (org-mode magit yasnippet impatient-mode web-mode flycheck-irony flycheck rebecca-theme molokai-theme ace-window neotree which-key try use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
