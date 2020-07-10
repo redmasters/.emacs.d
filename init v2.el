@@ -73,6 +73,15 @@
     (ac-config-default)
     (global-auto-complete-mode t)))
 
+;;Emmet-mode - O emmet ajuda nos arquivos HTML e CSS
+(use-package emmet-mode
+  :ensure t
+  :init (emmet-mode t);;Falta fazer funfar na inicializacao
+  )
+
+
+
+
 ;;Gerenciamento de Arquivos/Projetos
 (use-package neotree
   :ensure t
@@ -116,7 +125,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (ergoemacs-mode ergomacs-mode ace-window all-the-icons neotree try use-package))))
+    (emmet-mode ergoemacs-mode ergomacs-mode ace-window all-the-icons neotree try use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
