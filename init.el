@@ -73,14 +73,39 @@
     (ac-config-default)
     (global-auto-complete-mode t)))
 
+
 ;;Emmet-mode - O emmet ajuda nos arquivos HTML e CSS
 (use-package emmet-mode
   :ensure t
-  :init (emmet-mode t);;Falta fazer funfar na inicializacao
   )
 
 
+  
+;;Web-Mode
+(use-package web-mode
+  :ensure t
+  )
 
+;;Javascript Autocomplete
+(use-package js2-mode
+  :ensure t
+  )
+(setq js2-highlight-level 3)
+(add-hook 'js-mode-hook 'js2-minor-mode)
+(add-hook 'js2-mode-hook 'ac-js2-mode)
+
+(add-to-list 'auto-mode-alist '("\\.json$" . js-mode))
+
+;;YASnipet
+(use-package yasnippet
+  :ensure t)
+(yas-global-mode 1)
+
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(ac-config-default)
+(ac-set-trigger-key "TAB")
+(ac-set-trigger-key "<tab>")
 
 ;;Gerenciamento de Arquivos/Projetos
 (use-package neotree
@@ -131,7 +156,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (magit emmet-mode ergoemacs-mode ergomacs-mode ace-window all-the-icons neotree try use-package))))
+    (yasnippet tern web-mode magit emmet-mode ergoemacs-mode ergomacs-mode ace-window all-the-icons neotree try use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
