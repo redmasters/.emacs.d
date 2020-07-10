@@ -90,6 +90,12 @@
     (setq neo-theme (if(display-graphic-p) 'icons 'arrow)))
   :bind (("C-\\" . 'neotree-toggle)));;Atalho CTRL + \
 
+;;GitHub
+;;Magit
+
+(use-package magit
+  :ensure t)
+
 ;;Temas/Cores/etc
 ;;Icones
 (use-package all-the-icons
@@ -125,7 +131,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (emmet-mode ergoemacs-mode ergomacs-mode ace-window all-the-icons neotree try use-package))))
+    (magit emmet-mode ergoemacs-mode ergomacs-mode ace-window all-the-icons neotree try use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
